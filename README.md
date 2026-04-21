@@ -1,6 +1,14 @@
 # LLL-Attacks-ECDSA-Attacks
 LLL-based ECDSA lattice attack toolkit for recovering private keys from weak or biased nonces. Includes CVP solving and real-world signature analysis
-
+Note : WITOUT SAGEMATH NOT WORK
+# installe
+```bash
+git clone https://github.com/Cryptographytube/LLL-Attacks-ECDSA-Attacks
+cd LLL-Attacks-ECDSA-Attacks
+pip install fpylll
+conda create -n sage -c conda-forge sagemath -y
+conda activate sage
+```
 ```bash
 python3 test_generate.py --b 8 --sigs 60
 ```

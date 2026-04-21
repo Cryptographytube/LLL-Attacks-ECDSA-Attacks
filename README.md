@@ -17,6 +17,65 @@ python3 test_generate.py --b 8 --sigs 60
 ```bash
 python3 ecdsa_forensic.py
 ```
+# EXP
+```bash
+python ecdsa_forensic.py
+
+╔══════════════════════════════════════════════════════════════════════╗
+║  HNP/CVP  |  Biased-Nonce LSB Leakage — BIT Detector               ║
+║  Methods: Entropy Analysis · Chi-Square Test · HNP Lattice Prep    ║
+║                                                                      ║
+║  Channel : CRYPTOGRAPHYTUBE                                          ║
+║  Author  : sisujhon                                                  ║
+╚══════════════════════════════════════════════════════════════════════╝
+
+[?] Max TX to fetch per address (default 200): 2000
+[?] Mode — [1] Single address  [2] Bulk from btc.txt : 2
+[*] Resuming from checkpoint #53  (65097 remaining)
+
+────────────────────────────────────────────────────────────────────
+  Auditing: 1K1KYhxGDMTBJdhob9x9UWun7t5aVyuXZr
+────────────────────────────────────────────────────────────────────
+    - Total TX on-chain     : 49
+    - TX to fetch (limit)   : 49
+    - Fetched               : 20 / 49 TX                                         ✓
+    - Signatures extracted  : 20
+    - Unique pubkeys found  : 1
+    - Min sigs for analysis : 2
+
+    Analyzed 1 pubkey group(s):
+
+    ╔════════════════════════════════════════════════════════════════════════╗
+    ║ PUBKEY: 03a3f1185545db309a2aacbc5afc7f3d...              ║
+    ║ SIGS  : 20          VERDICT:  ★ 00000 ★ (Score: 50/100)    ║
+    ╠════════════════════════════════════════════════════════════════════════╣
+    ║ DEEP BIAS SCAN: Depth= 1 bits [▱▱▱▱▱▱▱▱▱▱▱▱▱▱▱▱] Success=100%  ║
+    ║ PARTIAL KEY  : d mod 2^ 1 = 0x1 (verified)   ║
+    ║ NONCE MODEL  : k mod 2^ 1 = 0x0 (fixed offset) ║
+    ╠────────────────────────────────────────────────────────────────────────╣
+    ║ ⚡ [TIER-1] LSB leak: b=1 bits | consistency=100.0% | 9/9 sigs agree  ║
+    ║ ⚑ [TIER-2] LSB hint: b=3 bits | consistency=66.7% | 5.3x above rando ║
+    ║ ⚑ [TIER-2] LSB hint: b=4 bits | consistency=44.4% | 7.1x above rando ║
+    ║ ⚑ [TIER-2] LSB hint: b=5 bits | consistency=44.4% | 14.2x above rand ║
+    ║ ⚑ [TIER-2] LSB hint: b=6 bits | consistency=33.3% | 21.3x above rand ║
+    ║ ⚑ [TIER-2] LSB hint: b=7 bits | consistency=33.3% | 42.7x above rand ║
+    ║ ⚑ [TIER-2] MSB hint: b=3 bits | fraction=40.0% | 3.2x above random   ║
+    ║ ⚑ [VERIFY] mod-N check: 5/20 sigs (25%) satisfy s·k_lsb ≡ z + r·d (m ║
+    ║ ⚑ [PROOF] k reconstruction WEAK: 6/20 sigs match (noise=70%) — possi ║
+    ║ ⚑ [WARN] High noise rate 70% — possible mixed keys in group or weak  ║
+    ╚════════════════════════════════════════════════════════════════════════╝
+    => Saved: results\1K1KYhxGDMTBJdhob9x9UWun7t5aVyuXZr\pubkey_03a3f1185545db30/
+    [+] LLL input file saved: 1K1KYhxGDMTBJdhob9x9UWun7t5aVyuXZr.txt
+        Run: python3 lll.py  → enter file: 1K1KYhxGDMTBJdhob9x9UWun7t5aVyuXZr.txt
+       vuln_info.txt | per_tx_vuln_detail.txt | vulnerable_data.txt | hnp_lattice.txt | multi_depth_merge.txt | k_reconstruction.txt | lattice_attack.sage | 1K1KYhxGDMTBJdhob9x9UWun7t5aVyuXZr.txt
+
+[LLL] ══ Starting LLL-Attack-v6 for 1K1KYhxGDMTBJdhob9x9UWun7t5aVyuXZr ══
+[LLL] Signatures supplied : 20
+[LLL] Running NO-MISS Biased-Nonce LLL/BKZ multi-attack engine ...
+[LLL] Launching 31 parallel workers across priority dimensions...
+[LLL] No private key candidates recovered after full NO-MISS sweep.
+[LLL] Reason: Target likely has no nonce bias, or leakage is too complex.
+```
 
 # EXP
 ```bash

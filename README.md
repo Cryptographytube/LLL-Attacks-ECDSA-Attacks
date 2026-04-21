@@ -15,7 +15,7 @@ python3 test_generate.py
 [*] Address  : 1DP3vc7QoRDGEy1L4p5nWHBQPfe9HWcoA5
 [*] PrivKey  : 0x89ca32e6c0686533c8463151a4b36a7ad93fa712d572ab19770d28b3834827e7
 [*] Bias     : 8 bits
-[*] Target folder: /mnt/c/mnmo/scrio/results/1DP3vc7QoRDGEy1L4p5nWHBQPfe9HWcoA5/pubkey_37f48173eb9d
+[*] Target folder: results/1DP3vc7QoRDGEy1L4p5nWHBQPfe9HWcoA5/pubkey_37f48173eb9d
 [+] Folder created/exists ✓
 [+] vulnerable_data.txt SAVED (size: 12647 bytes) ✓
 [+] forensic_params.json SAVED ✓

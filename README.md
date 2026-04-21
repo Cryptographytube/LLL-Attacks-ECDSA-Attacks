@@ -12,7 +12,11 @@ conda activate sage
 ```bash
 python3 test_generate.py --b 8 --sigs 60
 ```
+# Vulnerability Finder
 
+```bash
+python3 ecdsa_forensic.py
+```
 
 # EXP
 ```bash

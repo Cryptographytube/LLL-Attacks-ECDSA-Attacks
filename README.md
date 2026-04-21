@@ -28,7 +28,7 @@ python3 test_generate.py
 # ATTACK
 '''bash
 python3 run_attack.py 1DP3vc7QoRDGEy1L4p5nWHBQPfe9HWcoA5
-'''
+...
 
 
 # EXP

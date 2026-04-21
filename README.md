@@ -1,13 +1,13 @@
 # LLL-Attacks-ECDSA-Attacks
 LLL-based ECDSA lattice attack toolkit for recovering private keys from weak or biased nonces. Includes CVP solving and real-world signature analysis
 
-'''bash
+```bash
 python3 test_generate.py --b 8 --sigs 60
-'''
+```
 
 
 # EXP
-'''bash
+```bash
 python3 test_generate.py
 ================================================================
   ECDSA Bias Test Generator
@@ -22,17 +22,17 @@ python3 test_generate.py
 [+] 1DP3vc7QoRDGEy1L4p5nWHBQPfe9HWcoA5.txt SAVED ✓
 
 [>] RUN ATTACK: python3 run_attack.py 1DP3vc7QoRDGEy1L4p5nWHBQPfe9HWcoA5
-'''
+```
 
 
 # ATTACK
-'''bash
+```bash
 python3 run_attack.py 1DP3vc7QoRDGEy1L4p5nWHBQPfe9HWcoA5
-...
+```
 
 
 # EXP
-'''bash
+```bash
 python3 run_attack.py 1DP3vc7QoRDGEy1L4p5nWHBQPfe9HWcoA5
 ================================================================
   run_attack.py — Elite HNP Lattice Attack
@@ -69,15 +69,15 @@ python3 run_attack.py 1DP3vc7QoRDGEy1L4p5nWHBQPfe9HWcoA5
 ════════════════════════════════════════════════════════════════
   SUCCESS — 0x89ca32e6c0686533c8463151a4b36a7ad93fa712d572ab19770d28b3834827e7
 ════════════════════════════════════════════════════════════════
-'''
+```
 # ATTACK 2
 
-'''bash
+```bash
 python3 lll.py 1DP3vc7QoRDGEy1L4p5nWHBQPfe9HWcoA5.txt
-'''
+```
 
 # EXP
-'''bash
+```bash
 
   ██████╗██████╗ ██╗   ██╗██████╗ ████████╗ ██████╗  ██████╗ ██████╗  █████╗ ██████╗ ██╗  ██╗██╗   ██╗████████╗██╗   ██╗██████╗ ███████╗
  ██╔════╝██╔══██╗╚██╗ ██╔╝██╔══██╗╚══██╔══╝██╔═══██╗██╔════╝ ██╔══██╗██╔══██╗██╔══██╗██║  ██║╚██╗ ██╔╝╚══██╔══╝██║   ██║██╔══██╗██╔════╝
@@ -121,5 +121,5 @@ python3 lll.py 1DP3vc7QoRDGEy1L4p5nWHBQPfe9HWcoA5.txt
 
 
   ★★★ FOUND: 1 key(s) — saved to found.txt ★★★
-'''
+```
 

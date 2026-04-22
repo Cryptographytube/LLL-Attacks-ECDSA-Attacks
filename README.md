@@ -1,3 +1,5 @@
+<img width="1148" height="883" alt="Screenshot 2026 04 22 - 19 55 07 95" src="https://github.com/user-attachments/assets/f944adae-22a9-4e3d-a56d-c2fba477a4ab" />
+
 # LLL-Attacks-ECDSA-Attacks
 LLL-based ECDSA lattice attack toolkit for recovering private keys from weak or biased nonces. Includes CVP solving and real-world signature analysis
 Note : WITOUT SAGEMATH NOT WORK

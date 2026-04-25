@@ -195,4 +195,128 @@ python3 lll.py 1DP3vc7QoRDGEy1L4p5nWHBQPfe9HWcoA5.txt
 
   ★★★ FOUND: 1 key(s) — saved to found.txt ★★★
 ```
+# FAST V 10
+```bash
+python3 ecdsa_forensic.py
+
+╔══════════════════════════════════════════════════════════════════════╗
+║  HNP/CVP  |  Biased-Nonce LSB Leakage — BIT Detector               ║
+║  Methods: Entropy Analysis · Chi-Square Test · HNP Lattice Prep    ║
+║                                                                      ║
+║  Channel : CRYPTOGRAPHYTUBE                                          ║
+║  Author  : sisujhon                                                  ║
+╚══════════════════════════════════════════════════════════════════════╝
+
+[?] Max TX to fetch per address (default 200): 2000
+[?] Mode — [1] Single address  [2] Bulk from btc.txt : 1
+[?] Bitcoin address: 1DHmu7BvzjpQQxbKEuqTU2zSvZmgZBBrne
+
+────────────────────────────────────────────────────────────────────
+  Auditing: 1DHmu7BvzjpQQxbKEuqTU2zSvZmgZBBrne
+────────────────────────────────────────────────────────────────────
+    - Total TX on-chain     : 687
+    - TX to fetch (limit)   : 687
+    - Fetched               : 679 / 687 TX
+    - Signatures extracted  : 679
+    - Unique pubkeys found  : 1
+    - Min sigs for analysis : 1
+
+
+    ╔════════════════════════════════════════════════════════════════════════╗
+    ║ PUBKEY: 03af529faff355e75f9e17ba9377b80e...              ║
+    ║ SIGS  : 679         VERDICT:  CLEAN (Score: 35.567/100)         ║
+    ╠════════════════════════════════════════════════════════════════════════╣
+    ║ ⚑ [NEW] Deterministic nonce weakness detected                        ║
+    ║ ⚑ [NEW] Clustering: 8 nonces share similar structure                 ║
+    ║ ⚑ [VERIFY] mod-N check MEDIUM: 52%                                   ║
+    ╚════════════════════════════════════════════════════════════════════════╝
+    => Saved: results/1DHmu7BvzjpQQxbKEuqTU2zSvZmgZBBrne/pubkey_03af529faff355e7/
+    [+] LLL input file saved: 1DHmu7BvzjpQQxbKEuqTU2zSvZmgZBBrne.txt
+        Run: python3 lll.py  → enter file: 1DHmu7BvzjpQQxbKEuqTU2zSvZmgZBBrne.txt
+       vuln_info.txt | per_tx_vuln_detail.txt | vulnerable_data.txt | hnp_lattice.txt | multi_depth_merge.txt | 1DHmu7BvzjpQQxbKEuqTU2zSvZmgZBBrne.txt
+    => Results & LLL Input Saved.
+
+[LLL] ══ Starting LLL-Attack-v6 for 1DHmu7BvzjpQQxbKEuqTU2zSvZmgZBBrne ══
+[LLL] Signatures supplied : 679
+[LLL] Running NO-MISS Biased-Nonce LLL/BKZ multi-attack engine ...
+[LLL] --- Preliminary Vulnerability Scan Report ---
+    [+] Signatures Analyzed : 679
+    [+] LSB Leakage Detected: 16 bits
+    [+] MSB Leakage Detected: None bits
+    [+] Magnitude (Small K) : Standard 256-bit
+    [READY] Best Attack Strategy: [('LSB', 16)]
+
+[LLL] Phase 1: Algebraic Pre-Scan (Speed: Fast)
+    - Initializing Worker Pool (Brute-Force Mode)... Ready.
+    [LLL] Workers active: 31
+    - Worker: Linear-Step scan active...
+    - Worker: Faulty-Sig scan active...
+    - Worker: Fixed-S scan active...
+    - Worker: Reused-Nonce scan active...
+    - Worker: Inverse-Nonce scan active...
+    - Worker: LCG-Correlation scan active...
+    - Worker: Polnonce scan active...
+    - Worker: Cluster-Diff scan active...
+    - Worker: Super-Cluster scan active...
+    - Worker: Fixed-S scan finished.
+    - Worker: Inverse-Nonce scan finished.
+
+[LLL] ★★★ PRIVATE KEY FOUND via SUPER-CLUSTER ★★★
+[LLL]   Compressed   : 1DHmu7BvzjpQQxbKEuqTU2zSvZmgZBBrne ← MATCH
+[LLL]   Uncompressed : 1KLugbEQQKyPxHGqTNa7TSqhWxfBF9wVtR
+[LLL]   Private key  : 0xc01a89275f701c8224cf416396f112da51362c37485c788dfc6179854f74e1e0
+    ==> PRIVATE KEY SECURED IN: resultprivatekey/1DHmu7BvzjpQQxbKEuqTU2zSvZmgZBBrne.txt
+[LLL]   Saved to     : /mnt/c/bheeee/results/1DHmu7BvzjpQQxbKEuqTU2zSvZmgZBBrne/pubkey_03af529faff355e7/1DHmu7BvzjpQQxbKEuqTU2zSvZmgZBBrne/found.txt
+[LLL]   mathfound.txt: /mnt/c/bheeee/results/1DHmu7BvzjpQQxbKEuqTU2zSvZmgZBBrne/pubkey_03af529faff355e7/1DHmu7BvzjpQQxbKEuqTU2zSvZmgZBBrne/mathfound.txt
+    - Worker: Super-Cluster scan finished.
+    - Worker: Polnonce scan finished.
+    - Worker: Faulty-Sig scan finished.
+    - Worker: LCG-Correlation scan finished.
+    - Worker: Reused-Nonce scan finished.
+    - Worker: Cluster-Diff scan finished.
+    - Worker: Linear-Step scan finished.
+
+    [LLL] Algebraic scan complete. 1 elite candidates found.
+    - Verifying candidates via Point Mul... Done.
+
+[LLL] ★★★ PRIVATE KEY FOUND via ALGEBRAIC SCAN ★★★
+[LLL]   Compressed   : 1DHmu7BvzjpQQxbKEuqTU2zSvZmgZBBrne ← MATCH
+[LLL]   Uncompressed : 1KLugbEQQKyPxHGqTNa7TSqhWxfBF9wVtR
+[LLL]   Private key  : 0xc01a89275f701c8224cf416396f112da51362c37485c788dfc6179854f74e1e0
+    ==> PRIVATE KEY SECURED IN: resultprivatekey/1DHmu7BvzjpQQxbKEuqTU2zSvZmgZBBrne.txt
+[LLL]   Saved to     : /mnt/c/bheeee/results/1DHmu7BvzjpQQxbKEuqTU2zSvZmgZBBrne/pubkey_03af529faff355e7/1DHmu7BvzjpQQxbKEuqTU2zSvZmgZBBrne/found.txt
+[LLL]   mathfound.txt: /mnt/c/bheeee/results/1DHmu7BvzjpQQxbKEuqTU2zSvZmgZBBrne/pubkey_03af529faff355e7/1DHmu7BvzjpQQxbKEuqTU2zSvZmgZBBrne/mathfound.txt
+[LLL] Phase 1 audit complete. Proceeding to Deep Search Engine...
+[LLL] Deep Search Engine: 100 sigs | Parallel Scan starting on 5 cores...
+[PROGRESS] Task #18 | Audit: LSB-16bits (m=64) ...
+[LLL] Full Exhaustive Audit completed (18 lattice tasks total).
+[LLL] Total unique candidates: 1 — verifying ...
+
+[LLL] ★★★ PRIVATE KEY FOUND ★★★
+[LLL]   Compressed   : 1DHmu7BvzjpQQxbKEuqTU2zSvZmgZBBrne ← MATCH
+[LLL]   Uncompressed : 1KLugbEQQKyPxHGqTNa7TSqhWxfBF9wVtR
+[LLL]   Private key  : 0xc01a89275f701c8224cf416396f112da51362c37485c788dfc6179854f74e1e0
+[LLL]   Saved to     : /mnt/c/bheeee/results/1DHmu7BvzjpQQxbKEuqTU2zSvZmgZBBrne/pubkey_03af529faff355e7/1DHmu7BvzjpQQxbKEuqTU2zSvZmgZBBrne/found.txt
+[LLL]   mathfound.txt: /mnt/c/bheeee/results/1DHmu7BvzjpQQxbKEuqTU2zSvZmgZBBrne/pubkey_03af529faff355e7/1DHmu7BvzjpQQxbKEuqTU2zSvZmgZBBrne/mathfound.txt
+[LLL] ══ Done ══
+
+    [!] Error saving to resultprivatekey: 'str' object cannot be interpreted as an integer
+
+    *** LLL SUCCESS: PRIVATE KEY RECOVERED! ***
+    => Saved: results/1DHmu7BvzjpQQxbKEuqTU2zSvZmgZBBrne/pubkey_03af529faff355e7/
+    [+] LLL input file saved: 1DHmu7BvzjpQQxbKEuqTU2zSvZmgZBBrne.txt
+        Run: python3 lll.py  → enter file: 1DHmu7BvzjpQQxbKEuqTU2zSvZmgZBBrne.txt
+       vuln_info.txt | per_tx_vuln_detail.txt | vulnerable_data.txt | hnp_lattice.txt | multi_depth_merge.txt | 1DHmu7BvzjpQQxbKEuqTU2zSvZmgZBBrne.txt
+    => Saved: results/1DHmu7BvzjpQQxbKEuqTU2zSvZmgZBBrne/pubkey_03af529faff355e7/
+    [+] LLL input file saved: 1DHmu7BvzjpQQxbKEuqTU2zSvZmgZBBrne.txt
+        Run: python3 lll.py  → enter file: 1DHmu7BvzjpQQxbKEuqTU2zSvZmgZBBrne.txt
+       vuln_info.txt | per_tx_vuln_detail.txt | vulnerable_data.txt | hnp_lattice.txt | multi_depth_merge.txt | 1DHmu7BvzjpQQxbKEuqTU2zSvZmgZBBrne.txt
+
+════════════════════════════════════════════════════════════════════
+  FINAL REPORT
+  Addresses scanned : 1
+  Flagged (vuln/suspicious) : 1
+  Time elapsed      : 212.84s
+════════════════════════════════════════════════════════════════════
+```
 

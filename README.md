@@ -258,10 +258,6 @@ Ready.
 
 
   ★★★ FOUND: 1 key(s) — saved to found.txt ★★★
-
-# ATTACK
-```bash
-python3 run_attack.py 1DP3vc7QoRDGEy1L4p5nWHBQPfe9HWcoA5
 ```
 # ATTACK 2
 

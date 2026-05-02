@@ -1,0 +1,271 @@
+
+  ██████╗██████╗ ██╗   ██╗██████╗ ████████╗ ██████╗  ██████╗ ██████╗  █████╗ ██████╗ ██╗  ██╗██╗   ██╗████████╗██╗   ██╗██████╗ ███████╗
+ ██╔════╝██╔══██╗╚██╗ ██╔╝██╔══██╗╚══██╔══╝██╔═══██╗██╔════╝ ██╔══██╗██╔══██╗██╔══██╗██║  ██║╚██╗ ██╔╝╚══██╔══╝██║   ██║██╔══██╗██╔════╝
+ ██║     ██████╔╝ ╚████╔╝ ██████╔╝   ██║   ██║   ██║██║  ███╗██████╔╝███████║██████╔╝███████║ ╚████╔╝    ██║   ██║   ██║██████╔╝█████╗
+ ██║     ██╔══██╗  ╚██╔╝  ██╔═══╝    ██║   ██║   ██║██║   ██║██╔══██╗██╔══██║██╔═══╝ ██╔══██║  ╚██╔╝     ██║   ██║   ██║██╔══██╗██╔══╝
+ ╚██████╗██║  ██║   ██║   ██║        ██║   ╚██████╔╝╚██████╔╝██║  ██║██║  ██║██║     ██║  ██║   ██║      ██║   ╚██████╔╝██████╔╝███████╗
+  ╚═════╝╚═╝  ╚═╝   ╚═╝   ╚═╝        ╚═╝    ╚═════╝  ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝     ╚═╝  ╚═╝   ╚═╝      ╚═╝    ╚═════╝ ╚═════╝ ╚══════╝
+                                          LLL-Attack CRYPTOGRAPHYTUBE  |  HNP/CVP  |  Biased-Nonce LSB Leakage
+
+  Author : sisujhon
+
+  [?] ecdsa_forensic.py has created a .txt file named after the address.
+      Example: 1A1zPfix / 1eP5QGefi2DMPTfTL5SLmv7DivfNa.txt
+
+
+  [+] Address  : 1AJh4ADaYTNvMJidWz5aUetqnmdeiNSySE
+  [+] RSZ rows : 16
+
+[LLL] ══ Starting LLL-Attack-v6 for 1AJh4ADaYTNvMJidWz5aUetqnmdeiNSySE ══
+[LLL] Signatures supplied : 16
+[LLL] SageMath: OK
+[LLL] fpylll: OK (BKZ acceleration enabled)
+[LLL] Running NO-MISS Biased-Nonce LLL/BKZ multi-attack engine ...
+  [!] NONCE REUSE (R-REUSE) DETECTED
+  |- Duplicate R    : 2 occurrences
+  |- Suggestion     : Run 'Nonce-Reuse' engine for 100% key recovery.
+
+====================================================================
+  FORENSIC BIAS CENSUS REPORT
+====================================================================
+  Total Signatures Analyzed : 16
+--------------------------------------------------------------------
+
+  [+] LSB LEAKAGE FOUND
+  |- Leakage Depth  : 1 bit(s)
+  |- Affected TXs   : 11 / 16  (68%)
+  |- Pattern        : 0x0
+  |- Meaning        : k mod 2^1 == 0  =>  nonce is always EVEN  [STRONG BIAS]
+
+  |- Bit-Depth Analysis (LSB):
+      Bits   Match   Ratio%  Pattern
+     ─────  ──────  ───────  ──────────
+         1      11   68.8%  0x0000  #################### <<< BEST
+         2       7   43.8%  0x0002  #############
+         3       5   31.2%  0x0002  #########
+         4       3   18.8%  0x000a  #####
+         5       2   12.5%  0x000a  ###
+
+  |- Biased Transactions (11 total, showing up to 15):
+       #                   TXID                   k_low_bits
+     ───  ──────────────────────────────────────  ────────────
+       1  Unknown-TXID                            0x0
+       2  Unknown-TXID                            0x0
+       3  Unknown-TXID                            0x0
+       4  Unknown-TXID                            0x0
+       5  Unknown-TXID                            0x0
+       6  Unknown-TXID                            0x0
+       7  Unknown-TXID                            0x0
+       8  Unknown-TXID                            0x0
+       9  Unknown-TXID                            0x0
+      10  Unknown-TXID                            0x0
+      11  Unknown-TXID                            0x0
+
+--------------------------------------------------------------------
+
+  [+] MSB LEAKAGE FOUND
+  |- Leakage Depth  : 1 bit(s)
+  |- Affected TXs   : 8 / 16  (50%)
+  |- Pattern        : 0x0
+  |- Meaning        : k >> (256-1) == 0  =>  top 1 bits ZERO  [HIGH BIT CLEAR]
+
+  |- Bit-Depth Analysis (MSB):
+      Bits   Match   Ratio%  Pattern
+     ─────  ──────  ───────  ──────────
+         1       8   50.0%  0x0000  ############### <<< BEST
+         2       5   31.2%  0x0001  #########
+         3       4   25.0%  0x0006  #######
+         4       3   18.8%  0x000a  #####
+         5       3   18.8%  0x0014  #####
+         6       3   18.8%  0x0029  #####
+         7       2   12.5%  0x0026  ###
+
+====================================================================
+  ATTACK FEASIBILITY VERDICT
+====================================================================
+  |- R-Reuse 256-bit : need ~ 10 sigs, have  16  [OK]
+  |- LSB     1-bit : need ~260 sigs, have  16  [LOW]
+  |- LSB     2-bit : need ~132 sigs, have  16  [LOW]
+  |- LSB     3-bit : need ~ 89 sigs, have  16  [LOW]
+  |- LSB     4-bit : need ~ 68 sigs, have  16  [LOW]
+  |- LSB     5-bit : need ~ 55 sigs, have  16  [LOW]
+  |- MSB     1-bit : need ~260 sigs, have  16  [LOW]
+  |- MSB     2-bit : need ~132 sigs, have  16  [LOW]
+  |- MSB     3-bit : need ~ 89 sigs, have  16  [LOW]
+  |- MSB     4-bit : need ~ 68 sigs, have  16  [LOW]
+  |- MSB     5-bit : need ~ 55 sigs, have  16  [LOW]
+  |- MSB     6-bit : need ~ 46 sigs, have  16  [LOW]
+  |- MSB     7-bit : need ~ 40 sigs, have  16  [LOW]
+
+  >>> Strategy (13 depths): [('R-Reuse', 256), ('LSB', 1), ('LSB', 2), ('LSB', 3), ('LSB', 4), ('LSB', 5), ('MSB', 1), ('MSB', 2), ('MSB', 3), ('MSB', 4), ('MSB', 5), ('MSB', 6), ('MSB', 7)]
+  >>> VERDICT: ATTACK IS FEASIBLE — All depths will be attacked
+====================================================================
+
+────────────────────────────────────────────────────────────────────
+
+[LLL] High-Confidence Vulnerability Detected. Prioritizing Algebraic Engines...
+    [REUSE] Analyzing 1 duplicate R-groups...
+    ▸ R-Reuse Scan : Complete (1 keys found)
+
+╔════════════════════════════════════════════════════════════════════════════════╗
+║  💥  PRIVATE KEY RECOVERED (ALGEBRAIC / R-REUSE                              )  ║
+╠════════════════════════════════════════════════════════════════════════════════╣
+║  METHOD   : ALGEBRAIC / R-REUSE                                               ║
+║  COMPRESS : 1AJh4ADaYTNvMJidWz5aUetqnmdeiNSySE                         ✔ MATCH║
+║  UNCOMPR  : 14iTG9Ci6beLvwXjXRmHonxtfHuCvKZqqp                                ║
+║  HEX      : 0x251d0c37a5f2f91246f09023c9077d3a2a67202da6547c9c054ec1f3a38e7e4f ║
+║  STATUS   : ✔ VERIFIED & MATCHED (REAL LOGIC)                                   ║
+╚════════════════════════════════════════════════════════════════════════════════╝
+
+    [EXPORT] Private key secured in: resultprivatekey/1AJh4ADaYTNvMJidWz5aUetqnmdeiNSySE.txt
+[LLL]   Saved to     : /mnt/c/yuyyyy/oppp/1AJh4ADaYTNvMJidWz5aUetqnmdeiNSySE/found.txt
+[LLL]   mathfound.txt: /mnt/c/yuyyyy/oppp/1AJh4ADaYTNvMJidWz5aUetqnmdeiNSySE/mathfound.txt
+
+╔══════════════════════════════════════════════════════════════════════╗
+║  ADVANCED ALGEBRAIC FORENSIC ENGINES (v7.5)                   ║
+╚══════════════════════════════════════════════════════════════════════╝
+    ▸ [1/12] Nonce-Reuse  : Initializing...
+╔════════════════════════════════════════════════════════════════════════════════╗
+║  💥  PRIVATE KEY RECOVERED (FORENSIC: NONCE-REUSE                            )  ║
+╠════════════════════════════════════════════════════════════════════════════════╣
+║  METHOD   : Forensic: Nonce-Reuse                                             ║
+║  COMPRESS : 1AJh4ADaYTNvMJidWz5aUetqnmdeiNSySE                         ✔ MATCH║
+║  UNCOMPR  : 14iTG9Ci6beLvwXjXRmHonxtfHuCvKZqqp                                ║
+║  HEX      : 0x251d0c37a5f2f91246f09023c9077d3a2a67202da6547c9c054ec1f3a38e7e4f ║
+║  STATUS   : ✔ VERIFIED & MATCHED (REAL LOGIC)                                   ║
+╚════════════════════════════════════════════════════════════════════════════════╝
+
+    [EXPORT] Private key secured in: resultprivatekey/1AJh4ADaYTNvMJidWz5aUetqnmdeiNSySE.txt
+[LLL]   Saved to     : /mnt/c/yuyyyy/oppp/1AJh4ADaYTNvMJidWz5aUetqnmdeiNSySE/found.txt
+[LLL]   mathfound.txt: /mnt/c/yuyyyy/oppp/1AJh4ADaYTNvMJidWz5aUetqnmdeiNSySE/mathfound.txt
+    ▸ [1/12] Nonce-Reuse  : [FOUND 1 KEY(S)]
+    ▸ [2/12] RFC6979-Flaw : Initializing...
+╔════════════════════════════════════════════════════════════════════════════════╗
+║  💥  PRIVATE KEY RECOVERED (FORENSIC: RFC6979-FLAW                           )  ║
+╠════════════════════════════════════════════════════════════════════════════════╣
+║  METHOD   : Forensic: RFC6979-Flaw                                            ║
+║  COMPRESS : 1AJh4ADaYTNvMJidWz5aUetqnmdeiNSySE                         ✔ MATCH║
+║  UNCOMPR  : 14iTG9Ci6beLvwXjXRmHonxtfHuCvKZqqp                                ║
+║  HEX      : 0x251d0c37a5f2f91246f09023c9077d3a2a67202da6547c9c054ec1f3a38e7e4f ║
+║  STATUS   : ✔ VERIFIED & MATCHED (REAL LOGIC)                                   ║
+╚════════════════════════════════════════════════════════════════════════════════╝
+
+    [EXPORT] Private key secured in: resultprivatekey/1AJh4ADaYTNvMJidWz5aUetqnmdeiNSySE.txt
+[LLL]   Saved to     : /mnt/c/yuyyyy/oppp/1AJh4ADaYTNvMJidWz5aUetqnmdeiNSySE/found.txt
+[LLL]   mathfound.txt: /mnt/c/yuyyyy/oppp/1AJh4ADaYTNvMJidWz5aUetqnmdeiNSySE/mathfound.txt
+    ▸ [2/12] RFC6979-Flaw : [FOUND 1 KEY(S)]
+    ▸ [3/12] Linear-Scan  : no matches
+    ▸ [4/12] Partial-Leak : no matchesng...
+    ▸ [5/12] Hash-Rel     : no matches sigs)...
+    ▸ [6/12] Linear-Rec   : no matches sigs) c=32...
+    ▸ [7/12] Poly-Rec     : 87% (14/16 sigs)...
+╔════════════════════════════════════════════════════════════════════════════════╗
+║  💥  PRIVATE KEY RECOVERED (FORENSIC: POLY-REC                               )  ║
+╠════════════════════════════════════════════════════════════════════════════════╣
+║  METHOD   : Forensic: Poly-Rec                                                ║
+║  COMPRESS : 1AJh4ADaYTNvMJidWz5aUetqnmdeiNSySE                         ✔ MATCH║
+║  UNCOMPR  : 14iTG9Ci6beLvwXjXRmHonxtfHuCvKZqqp                                ║
+║  HEX      : 0x251d0c37a5f2f91246f09023c9077d3a2a67202da6547c9c054ec1f3a38e7e4f ║
+║  STATUS   : ✔ VERIFIED & MATCHED (REAL LOGIC)                                   ║
+╚════════════════════════════════════════════════════════════════════════════════╝
+
+    [EXPORT] Private key secured in: resultprivatekey/1AJh4ADaYTNvMJidWz5aUetqnmdeiNSySE.txt
+[LLL]   Saved to     : /mnt/c/yuyyyy/oppp/1AJh4ADaYTNvMJidWz5aUetqnmdeiNSySE/found.txt
+[LLL]   mathfound.txt: /mnt/c/yuyyyy/oppp/1AJh4ADaYTNvMJidWz5aUetqnmdeiNSySE/mathfound.txt
+    ▸ [7/12] Poly-Rec     : [FOUND 1 KEY(S)]
+    ▸ [8/12] Endianness   : no matches sigs)...
+    ▸ [9/12] Patterns     : 99% (274/275 patterns)...
+╔════════════════════════════════════════════════════════════════════════════════╗
+║  💥  PRIVATE KEY RECOVERED (FORENSIC: PATTERNS                               )  ║
+╠════════════════════════════════════════════════════════════════════════════════╣
+║  METHOD   : Forensic: Patterns                                                ║
+║  COMPRESS : 1AJh4ADaYTNvMJidWz5aUetqnmdeiNSySE                         ✔ MATCH║
+║  UNCOMPR  : 14iTG9Ci6beLvwXjXRmHonxtfHuCvKZqqp                                ║
+║  HEX      : 0x251d0c37a5f2f91246f09023c9077d3a2a67202da6547c9c054ec1f3a38e7e4f ║
+║  STATUS   : ✔ VERIFIED & MATCHED (REAL LOGIC)                                   ║
+╚════════════════════════════════════════════════════════════════════════════════╝
+
+    [EXPORT] Private key secured in: resultprivatekey/1AJh4ADaYTNvMJidWz5aUetqnmdeiNSySE.txt
+[LLL]   Saved to     : /mnt/c/yuyyyy/oppp/1AJh4ADaYTNvMJidWz5aUetqnmdeiNSySE/found.txt
+[LLL]   mathfound.txt: /mnt/c/yuyyyy/oppp/1AJh4ADaYTNvMJidWz5aUetqnmdeiNSySE/mathfound.txt
+    ▸ [9/12] Patterns     : [FOUND 1 KEY(S)]
+    ▸ [10/12] Cross-Curve  : no matches sigs)...
+    ▸ [11/12] Invalid-Crve : no matches sigs)...
+    ▸ [12/12] Subgroup     : no matches sigs)...
+[LLL] Key recovery confirmed via Forensic Engines. Continuing with deep audit...
+Ready.
+    [LLL] Workers active: 31
+    - Worker: BKZ-Deep scan active...
+    - Worker: Small-K scan active...
+    - Worker: Progressive-HNP scan active...
+    - Worker: Small-Nonce scan active...
+    - Worker: Small-K scan finished.
+    - Worker: Progressive-HNP scan finished.
+    - Worker: BKZ-Deep scan finished.
+    - Worker: Small-Nonce scan finished.
+
+    [LLL] Initial Lattice scan complete. 0 potential candidates found.
+[LLL] Phase 1 complete. Proceeding to Deep Search Engine...
+[LLL] Deep Search Engine: 16 sigs | 13 detected depths | 8 parallel workers
+[LLL] Task Generator: Entering Exhaustive Audit (1-256 bits)...
+[!] WARNING: Performing full 1-256 bit sweep for LSB & MSB (512+ tasks).
+[!] This is a true brute-force lattice attack and will take significant time!
+
+[LLL] Full Exhaustive Audit completed (0 lattice tasks total).
+[LLL] LLL ATTACK: Deep search complete. No matching private key found for this specific address.
+
+[LLL] ── Launching Nitro Algebraic Engine (4 solvers, no SageMath)...
+
+╔══════════════════════════════════════════════════════════════════╗
+║  NITRO EXHAUSTIVE ENGINE (Full Forensic Audit Mode)          ║
+╚══════════════════════════════════════════════════════════════════╝
+  Target : 1AJh4ADaYTNvMJidWz5aUetqnmdeiNSySE | Sigs : 16
+
+╔════════════════════════════════════════════════════════════════════════════════╗
+║  💥  PRIVATE KEY RECOVERED (NITRO ALGEBRAIC ENGINE)                             ║
+╠════════════════════════════════════════════════════════════════════════════════╣
+║  METHOD   : ADDITIVE gap=1                                                    ║
+║  EVIDENCE : Indices [3,4,5]                                                   ║
+║  COMPRESS : 1AJh4ADaYTNvMJidWz5aUetqnmdeiNSySE                         ✔ MATCH║
+║  UNCOMPR  : 14iTG9Ci6beLvwXjXRmHonxtfHuCvKZqqp                                ║
+║  HEX      : 0x251d0c37a5f2f91246f09023c9077d3a2a67202da6547c9c054ec1f3a38e7e4f ║
+║  STATUS   : ✔ VERIFIED & MATCHED                                                ║
+╚════════════════════════════════════════════════════════════════════════════════╝
+╔════════════════════════════════════════════════════════════════════════════════╗
+║  💥  PRIVATE KEY RECOVERED (NITRO ALGEBRAIC ENGINE)                             ║
+╠════════════════════════════════════════════════════════════════════════════════╣
+║  METHOD   : INV-NONCE                                                         ║
+║  EVIDENCE : Sigs [3,4] gap=1                                                  ║
+║  COMPRESS : 1AJh4ADaYTNvMJidWz5aUetqnmdeiNSySE                         ✔ MATCH║
+║  UNCOMPR  : 14iTG9Ci6beLvwXjXRmHonxtfHuCvKZqqp                                ║
+║  HEX      : 0x251d0c37a5f2f91246f09023c9077d3a2a67202da6547c9c054ec1f3a38e7e4f ║
+║  STATUS   : ✔ VERIFIED & MATCHED                                                ║
+╚════════════════════════════════════════════════════════════════════════════════╝
+  [NITRO] ADD:DONE   GEO:DONE     RATIO:DONE  INV:DONE  | Found: 2 : 2
+
+╔════════════════════════════════════════════════════════════════════════════════╗
+║  💥  PRIVATE KEY RECOVERED (NITRO EXHAUSTIVE ENGINE                          )  ║
+╠════════════════════════════════════════════════════════════════════════════════╣
+║  METHOD   : Nitro Exhaustive Engine                                           ║
+║  COMPRESS : 1AJh4ADaYTNvMJidWz5aUetqnmdeiNSySE                         ✔ MATCH║
+║  UNCOMPR  : 14iTG9Ci6beLvwXjXRmHonxtfHuCvKZqqp                                ║
+║  HEX      : 0x251d0c37a5f2f91246f09023c9077d3a2a67202da6547c9c054ec1f3a38e7e4f ║
+║  STATUS   : ✔ VERIFIED & MATCHED (REAL LOGIC)                                   ║
+╚════════════════════════════════════════════════════════════════════════════════╝
+
+    [EXPORT] Private key secured in: resultprivatekey/1AJh4ADaYTNvMJidWz5aUetqnmdeiNSySE.txt
+[LLL]   Saved to     : /mnt/c/yuyyyy/oppp/1AJh4ADaYTNvMJidWz5aUetqnmdeiNSySE/found.txt
+[LLL]   mathfound.txt: /mnt/c/yuyyyy/oppp/1AJh4ADaYTNvMJidWz5aUetqnmdeiNSySE/mathfound.txt
+[LLL] Total unique candidates: 1 — verifying ...
+
+[LLL] ★★★ PRIVATE KEY FOUND ★★★
+[LLL]   Compressed   : 1AJh4ADaYTNvMJidWz5aUetqnmdeiNSySE ← MATCH
+[LLL]   Uncompressed : 14iTG9Ci6beLvwXjXRmHonxtfHuCvKZqqp
+[LLL]   P2SH-SegWit  : 31oh6shUCmT3pepi1GRxV3a6uNSTxDTwzh
+[LLL]   Private key  : 0x251d0c37a5f2f91246f09023c9077d3a2a67202da6547c9c054ec1f3a38e7e4f
+[LLL]   Saved to     : /mnt/c/yuyyyy/oppp/1AJh4ADaYTNvMJidWz5aUetqnmdeiNSySE/found.txt
+[LLL]   mathfound.txt: /mnt/c/yuyyyy/oppp/1AJh4ADaYTNvMJidWz5aUetqnmdeiNSySE/mathfound.txt
+[LLL] ══ Done ══
+
+
+  ★★★ TARGET RECOVERY SUCCESS: 1 valid private keys secured! ★★★
